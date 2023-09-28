@@ -7,31 +7,31 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ProductController {
 
-    //Method for getting all products
+    //Get All Products
     @GetMapping("/products")
     public String getAllProducts(){
         return "Getting all Products>>>>";
     }
 
-    //Method for getting single product
+    //Get a single product
     @GetMapping("/products/{productId}")
     public String getSingleProduct(@PathVariable("productId") Long productId){
         return "Getting single Product...."+ productId;
     }
 
-    //Method for Adding new Product
+    //Add a new Product
     @PostMapping("/products")
     public String addNewProduct(@RequestBody  ProductDTO productDTO){
         return "Adding new Product" + productDTO;
     }
 
-    //Method for updating product
+    //Update a new Product
     @PutMapping("/products/{productId}")
     public String updateProduct(@PathVariable ("productId") Long productId){
         return "Updating product" + productId;
     }
 
-    //Method for deleting product
+    //Delete a product
     @DeleteMapping("/products/{productId}")
     public String deleteProduct(@PathVariable("productId") Long productId){
         return "Deleting product with id " +productId ;
