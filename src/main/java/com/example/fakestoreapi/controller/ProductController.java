@@ -1,12 +1,18 @@
 package com.example.fakestoreapi.controller;
 
 import com.example.fakestoreapi.DTOs.ProductDTO;
+import com.example.fakestoreapi.services.ProductService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
 
+    //created ref of ProductService interface, code to interface principle
+    private ProductService productService;
+    public ProductController(ProductService productService){
+        this.productService=productService;
+    }
     //Get All Products
     @GetMapping("/products")
     public String getAllProducts(){

@@ -1,5 +1,8 @@
 package com.example.fakestoreapi.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class FakeStoreCategoryServiceImp implements CategoryService {
 
     @Override

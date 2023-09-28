@@ -1,7 +1,9 @@
 package com.example.fakestoreapi.services;
 
 import com.example.fakestoreapi.DTOs.ProductDTO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FakeStoreProductServiceImp implements ProductService{
     @Override
     public String getAllProducts() {
