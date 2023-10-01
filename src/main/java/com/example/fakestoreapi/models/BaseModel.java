@@ -7,8 +7,8 @@ import java.util.Date;
 @Setter
 public class BaseModel {
     private long id;
-    private boolean isDeleted;
-    private Date CreatedAt;
-    private Date lastUpdated;
+//    private boolean isDeleted;
+//    private Date CreatedAt;
+//    private Date lastUpdated;
 
 }

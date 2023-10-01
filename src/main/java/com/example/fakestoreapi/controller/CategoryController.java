@@ -1,9 +1,12 @@
 package com.example.fakestoreapi.controller;
 
+import com.example.fakestoreapi.models.Category;
 import com.example.fakestoreapi.services.CategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CategoryController {
@@ -15,8 +18,8 @@ public class CategoryController {
 
     //Get all categories
     @GetMapping("/products/categories")
-    public String getAllCategories(){
-        return "Getting all Categories....";
+    public List<String> getAllCategories(){
+        return categoryService.getAllCategories();
     }
 
     //Get in a category
