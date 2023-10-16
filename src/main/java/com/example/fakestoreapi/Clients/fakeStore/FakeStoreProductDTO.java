@@ -1,4 +1,4 @@
-package com.example.fakestoreapi.DTOs;
+package com.example.fakestoreapi.Clients.fakeStore;
 
 
 import jakarta.annotation.Nullable;
@@ -10,6 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class FakeStoreProductDTO {
+
     private Long id;
     private String title;
     private double price;

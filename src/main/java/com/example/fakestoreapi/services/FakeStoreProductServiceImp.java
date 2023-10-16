@@ -1,6 +1,7 @@
 package com.example.fakestoreapi.services;
 
-import com.example.fakestoreapi.DTOs.FakeStoreProductDTO;
+import com.example.fakestoreapi.Clients.fakeStore.FakeStoreClient;
+import com.example.fakestoreapi.Clients.fakeStore.FakeStoreProductDTO;
 import com.example.fakestoreapi.DTOs.ProductDTO;
 import com.example.fakestoreapi.models.Category;
 import com.example.fakestoreapi.models.Product;
@@ -17,17 +18,16 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-
-import static java.util.Objects.nonNull;
 
 
 @Service
 public class FakeStoreProductServiceImp implements ProductService{
     private RestTemplateBuilder restTemplateBuilder;
-    public FakeStoreProductServiceImp (RestTemplateBuilder restTemplateBuilder){
+    private FakeStoreClient fakeStoreClient ;
+    public FakeStoreProductServiceImp (RestTemplateBuilder restTemplateBuilder,FakeStoreClient fk){
         this.restTemplateBuilder=restTemplateBuilder;
+        this.fakeStoreClient=fk;
     }
 
     private Product convertProductDtoToProduct(FakeStoreProductDTO fsdto){
@@ -54,14 +54,15 @@ public class FakeStoreProductServiceImp implements ProductService{
     }
     @Override
     public List<Product> getAllProducts() {
-        RestTemplate restTemplate=restTemplateBuilder.build();
-        ResponseEntity<FakeStoreProductDTO[]> l=restTemplate.getForEntity(
-                "https://fakestoreapi.com/products",
-                FakeStoreProductDTO[].class);
+//        RestTemplate restTemplate=restTemplateBuilder.build();
+//        ResponseEntity<FakeStoreProductDTO[]> l=restTemplate.getForEntity(
+//                "https://fakestoreapi.com/products",   //moved this to method in fkclient
+//                FakeStoreProductDTO[].class);
+        List<FakeStoreProductDTO> fakeStoreProductDTOS= fakeStoreClient.getAllProducts();
 
         List<Product> answer= new ArrayList<>();
 
-        for(FakeStoreProductDTO productDTO: l.getBody()){
+        for(FakeStoreProductDTO productDTO: fakeStoreProductDTOS){
             answer.add(convertProductDtoToProduct(productDTO));
         }
         return answer;
