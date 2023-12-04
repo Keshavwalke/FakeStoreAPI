@@ -2,10 +2,11 @@ package com.example.fakestoreapi.services;
 
 import com.example.fakestoreapi.DTOs.ProductDTO;
 import com.example.fakestoreapi.models.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public interface ProductService {
     List<Product> getAllProducts();
     Optional<Product> getSingleProduct(Long productId);

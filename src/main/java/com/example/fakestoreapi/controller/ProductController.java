@@ -5,7 +5,11 @@ import com.example.fakestoreapi.DTOs.ProductDTO;
 import com.example.fakestoreapi.exceptions.NotFoundException;
 import com.example.fakestoreapi.models.Category;
 import com.example.fakestoreapi.models.Product;
+import com.example.fakestoreapi.repositories.ProductRepository;
 import com.example.fakestoreapi.services.ProductService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -20,10 +24,13 @@ public class ProductController {
 
     //created ref of ProductService interface, code to interface principle
     //Our controller should not take model, they should take DTO's
+
     private ProductService productService;
+
     public ProductController(ProductService productService){
         this.productService=productService;
     }
+
     //Get All Products
     @GetMapping("/products")
     public List<Product> getAllProducts(){
@@ -70,7 +77,7 @@ public class ProductController {
     }
 
 
-    //Add a new Product
+   // Add a new Product
     @PostMapping("/products")
     public ResponseEntity<Product> addNewProduct(@RequestBody ProductDTO productDTO){
         Product newPrduct=productService.addNewProduct(productDTO);
@@ -110,5 +117,6 @@ public class ProductController {
 //         errorResposeDTO.setErrorMessage(e.getMessage());
 //         return new ResponseEntity<>(errorResposeDTO, HttpStatus.NOT_FOUND);
 //    }
+
 
 }
