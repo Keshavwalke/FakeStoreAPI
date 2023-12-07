@@ -8,4 +8,9 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
     Product save(Product product);
+
+
+    // Below both methods are similar
+    Product findProductById(Long id);
+    Product findProductByIdIs(Long id);
 }
