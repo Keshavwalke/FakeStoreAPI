@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity(name="tpc_TA")
 public class TA extends User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private double avgRating;
 

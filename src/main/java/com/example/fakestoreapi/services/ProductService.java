@@ -1,6 +1,7 @@
 package com.example.fakestoreapi.services;
 
 import com.example.fakestoreapi.DTOs.ProductDTO;
+import com.example.fakestoreapi.exceptions.NotFoundException;
 import com.example.fakestoreapi.models.Product;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.Optional;
 @Service
 public interface ProductService {
     List<Product> getAllProducts();
-    Optional<Product> getSingleProduct(Long productId);
+    Optional<Product> getSingleProduct(Long productId) throws NotFoundException;
     Product addNewProduct( ProductDTO productDTO);
 
     // product  object has only those fields filled which needs to be updated, other things are null

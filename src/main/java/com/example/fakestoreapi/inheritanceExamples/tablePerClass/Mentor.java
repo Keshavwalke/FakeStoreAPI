@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity(name="tbc_Mentor")
 public class Mentor extends User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private int noSessions;
     private  int noOfMentees;

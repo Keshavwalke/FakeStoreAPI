@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 public class CategoryController {
 
     private CategoryService categoryService;
+    public CategoryController(CategoryService categoryService){
+        this.categoryService=categoryService;
+    }
 
 
     //Get all categories

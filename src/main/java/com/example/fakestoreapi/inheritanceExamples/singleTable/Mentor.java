@@ -10,7 +10,7 @@ import lombok.Setter;
 @DiscriminatorValue("2")
 public class Mentor extends User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int noSessions;
     private  int noOfMentees;

@@ -10,7 +10,7 @@ import lombok.Setter;
 @DiscriminatorValue("1")
 public class Instructor extends User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String batchName;
 }

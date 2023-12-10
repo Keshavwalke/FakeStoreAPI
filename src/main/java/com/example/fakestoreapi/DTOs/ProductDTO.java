@@ -16,5 +16,5 @@ public class ProductDTO {
     private double price;
     private String image;
     private String category;
-    private RatingDTO rating;
+
 }
