@@ -1,11 +1,13 @@
 package com.example.fakestoreapi.services;
 import com.example.fakestoreapi.models.Product;
 import com.example.fakestoreapi.repositories.CategoryRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Primary
 public class SelfCategoryService implements CategoryService{
     CategoryRepository categoryRepository;
     public SelfCategoryService(CategoryRepository categoryRepository){

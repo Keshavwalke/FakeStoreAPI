@@ -11,4 +11,6 @@ public class Dummy extends BaseModel {
     private String name;
     private int ranged;
     private String dum;
+    private String random;
+    private String anotherRandom;
 }

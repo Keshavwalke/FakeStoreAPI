@@ -7,11 +7,13 @@ import com.example.fakestoreapi.exceptions.NotFoundException;
 import com.example.fakestoreapi.models.Category;
 import com.example.fakestoreapi.models.Product;
 import com.example.fakestoreapi.repositories.ProductRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 @Service
+@Primary
 public class SelfProductService implements ProductService{
     ProductRepository productRepository;
     public SelfProductService(ProductRepository productRepository){
