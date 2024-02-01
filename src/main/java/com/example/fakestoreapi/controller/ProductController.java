@@ -22,7 +22,7 @@ import java.util.Optional;
 @RestController
 public class ProductController {
 
-    //created ref of ProductService interface, code to interface principle
+    //created ref of ProductService +interface, code to interface principle
     //Our controller should not take model, they should take DTO's
 
     private ProductService productService;
