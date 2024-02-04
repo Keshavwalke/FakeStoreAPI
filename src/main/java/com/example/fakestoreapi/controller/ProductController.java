@@ -1,5 +1,9 @@
 package com.example.fakestoreapi.controller;
 
+import com.example.fakestoreapi.Clients.authenticationClient.AuthenticationClient;
+import com.example.fakestoreapi.Clients.authenticationClient.DTOs.Role;
+import com.example.fakestoreapi.Clients.authenticationClient.DTOs.SessionStatus;
+import com.example.fakestoreapi.Clients.authenticationClient.DTOs.ValidateTokenResponseDTO;
 import com.example.fakestoreapi.DTOs.ErrorResposeDTO;
 import com.example.fakestoreapi.DTOs.ProductDTO;
 import com.example.fakestoreapi.exceptions.NotFoundException;
@@ -12,6 +16,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -26,15 +31,46 @@ public class ProductController {
     //Our controller should not take model, they should take DTO's
 
     private ProductService productService;
+    private ProductRepository productRepository;
+    private AuthenticationClient authenticationClient;
 
-    public ProductController(ProductService productService){
+
+    public ProductController(ProductService productService, ProductRepository productRepository, AuthenticationClient authenticationClient  ){
         this.productService=productService;
+        this.productRepository=productRepository;
+        this.authenticationClient=authenticationClient;
     }
 
     //Get All Products
+    // Make only admins be able to access all products
     @GetMapping("/products")
-    public List<Product> getAllProducts(){
-       return productService.getAllProducts();
+    public ResponseEntity<List<Product>> getAllProducts(@Nullable @RequestHeader("AUTH_TOKEN") String token,
+                                                        @Nullable @RequestHeader("USER_ID") Long userId) {
+        // check if token exists
+        if (token == null || userId == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        ValidateTokenResponseDTO response = authenticationClient.validate(token, userId);
+
+        // check if token is valid
+        if (response.getSessionStatus().equals(SessionStatus.INVALID)) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        // check if user has permissions
+        boolean isUserAdmin = false;
+        for (Role role : response.getUserDto().getRoles()) {
+            if (role.getRole().equals("ADMIN")) {
+                isUserAdmin = true;
+            }
+        }
+
+        if (!isUserAdmin) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        List<Product> products= productService.getAllProducts();
+        return  new ResponseEntity(products, HttpStatus.OK);
     }
 
     //Get a single product Way 1

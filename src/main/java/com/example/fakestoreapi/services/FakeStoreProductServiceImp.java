@@ -6,6 +6,7 @@ import com.example.fakestoreapi.DTOs.ProductDTO;
 import com.example.fakestoreapi.models.Category;
 import com.example.fakestoreapi.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 
 @Service
+@Primary
 public class FakeStoreProductServiceImp implements ProductService{
     private RestTemplateBuilder restTemplateBuilder;
     private FakeStoreClient fakeStoreClient ;
