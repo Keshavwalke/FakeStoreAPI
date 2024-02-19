@@ -58,17 +58,17 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        // check if user has permissions
-        boolean isUserAdmin = false;
-        for (Role role : response.getUserDto().getRoles()) {
-            if (role.getRole().equals("ADMIN")) {
-                isUserAdmin = true;
-            }
-        }
-
-        if (!isUserAdmin) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
+//        // check if user has permissions(can be replaced in springconfig file )
+//        boolean isUserAdmin = false;
+//        for (Role role : response.getUserDto().getRoles()) {
+//            if (role.getRole().equals("ADMIN")) {
+//                isUserAdmin = true;
+//            }
+//        }
+//
+//        if (!isUserAdmin) {
+//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//        }
         List<Product> products= productService.getAllProducts();
         return  new ResponseEntity(products, HttpStatus.OK);
     }

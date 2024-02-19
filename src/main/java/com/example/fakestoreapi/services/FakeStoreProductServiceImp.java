@@ -23,7 +23,7 @@ import java.util.Optional;
 
 
 @Service
-@Primary
+//@Primary
 public class FakeStoreProductServiceImp implements ProductService{
     private RestTemplateBuilder restTemplateBuilder;
     private FakeStoreClient fakeStoreClient ;
